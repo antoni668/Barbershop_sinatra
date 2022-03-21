@@ -42,8 +42,32 @@ get '/about' do
  get '/visit' do
 	erb :visit
  end
+ 
+post '/visit' do
+	x = ''
+	case params[:users_barber]
+	when '1'
+		x = "; Barber: Walter White"
+	when '2'
+		x = "; Barber: Jessie Pinkman"
+	when '3'
+		x = "; Barber: Gus Fring"
+	end
+
+	f = File.open('./public/users.txt', 'a')
+	f.write("User: #{params[:username]}; Tel: #{params[:userphone]}; Time: #{params[:usertime]}" + x +"\n")
+	f.close
+	erb :visit
+ end
 
  get '/contacts' do
+	erb :contacts
+ end
+
+ post '/contacts' do
+	f = File.open('./public/contacts.txt', 'a')
+	f.write("Email: #{params[:usermail]}; Message: #{params[:usermessage]}\n")
+	f.close
 	erb :contacts
  end
 
