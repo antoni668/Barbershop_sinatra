@@ -44,6 +44,10 @@ get '/about' do
  end
  
 post '/visit' do
+	@username = params[:username]
+	@userphone = params[:userphone]
+	@usertime = params[:usertime]
+
 	x = ''
 	case params[:users_barber]
 	when '1'
@@ -55,8 +59,9 @@ post '/visit' do
 	end
 
 	f = File.open('./public/users.txt', 'a')
-	f.write("User: #{params[:username]}; Tel: #{params[:userphone]}; Time: #{params[:usertime]}" + x +"\n")
+	f.write("User: #{@username}; Tel: #{@userphone}; Time: #{@usertime}" + x +"\n")
 	f.close
+	
 	erb :visit
  end
 
@@ -65,9 +70,13 @@ post '/visit' do
  end
 
  post '/contacts' do
+	@usermail = params[:usermail]
+	@usermessage = params[:usermessage]
+
 	f = File.open('./public/contacts.txt', 'a')
-	f.write("Email: #{params[:usermail]}; Message: #{params[:usermessage]}\n")
+	f.write("Email: #{@usermail}; Message: #{@usermessage}\n")
 	f.close
+
 	erb :contacts
  end
 
