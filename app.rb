@@ -47,6 +47,7 @@ post '/visit' do
 	@username = params[:username]
 	@userphone = params[:userphone]
 	@usertime = params[:usertime]
+	@color = params[:colorpicker]
 
 	x = ''
 	case params[:users_barber]
@@ -59,7 +60,7 @@ post '/visit' do
 	end
 
 	f = File.open('./public/users.txt', 'a')
-	f.write("User: #{@username}; Tel: #{@userphone}; Time: #{@usertime}" + x +"\n")
+	f.write("User: #{@username}; Tel: #{@userphone}; Time: #{@usertime}; Color: #{@color}" + x +"\n")
 	f.close
 	
 	erb :visit

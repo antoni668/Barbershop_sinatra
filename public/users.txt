@@ -8,3 +8,4 @@ User: Sam; Tel: 33-33-33; Time: 14:00
 User: Lucy; Tel: 11-11-11; Time: 15:00; Barber: Walter White
 User: An; Tel: 55-55-55; Time: 17:30; Barber: Gus Fring
 User: Василий Алибабаевич; Tel: 132-897; Time: 23.03.2022  в 10:00; Barber: Walter White
+User: Cat; Tel: 333-33-333; Time: 22:00; Color: #ff887c; Barber: Walter White
