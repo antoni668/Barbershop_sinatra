@@ -87,11 +87,23 @@ post '/visit' do
 	@usermail = params[:usermail]
 	@usermessage = params[:usermessage]
 
+	hash = {
+		usermail: 'Введите адрес электронной почты',
+		usermessage: 'Введите сообщение',
+	}
+
+	hash.each do |k, v|
+		if params[k] == ''
+			@error = hash[k]
+			return erb :contacts
+		end
+	end
+
 	f = File.open('./public/contacts.txt', 'a')
 	f.write("Email: #{@usermail}; Message: #{@usermessage}\n")
 	f.close
 
-	erb :contacts
+	erb 'Ваше сообщение отправлено'
  end
 
 post '/login/attempt' do
