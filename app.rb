@@ -42,7 +42,7 @@ get '/about' do
  get '/visit' do
 	erb :visit
  end
- 
+
 post '/visit' do
 	@username = params[:username]
 	@userphone = params[:userphone]
