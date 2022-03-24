@@ -59,11 +59,16 @@ post '/visit' do
 		x = "; Barber: Gus Fring"
 	end
 
-	f = File.open('./public/users.txt', 'a')
-	f.write("User: #{@username}; Tel: #{@userphone}; Time: #{@usertime}; Color: #{@color}" + x +"\n")
-	f.close
-	
-	erb :visit
+	if @username == ''
+		@error = 'Error!'
+		return erb :visit
+	else
+		f = File.open('./public/users.txt', 'a')
+		f.write("User: #{@username}; Tel: #{@userphone}; Time: #{@usertime}; Color: #{@color}" + x +"\n")
+		f.close
+	end
+
+	erb "Вы записаны на  #{@usertime}"
  end
 
  get '/contacts' do
