@@ -1,8 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
-
-
+require 'pony'
 
 configure do
   enable :sessions
@@ -15,7 +14,6 @@ helpers do
 	else
 		'Hello stranger'
 	end
-    #session[:identity] ? session[:identity] : 'Hello stranger'
   end
 end
 
@@ -84,8 +82,9 @@ post '/visit' do
  end
 
  post '/contacts' do
-	@usermail = params[:usermail]
 	@usermessage = params[:usermessage]
+	@usermail = params[:usermail]
+
 
 	hash = {
 		usermail: 'Введите адрес электронной почты',
