@@ -4,7 +4,7 @@ require 'sinatra/reloader'
 require 'sqlite3'
 
 configure do
-	db = SQLite3::Database.new 'base.sqlite'
+	db = get_db
 	db.execute 'create table if not exists "Users"
 	(
 		"Id" integer primary key autoincrement,
@@ -15,7 +15,6 @@ configure do
 		"Color" text
 		)'
 
-		db = SQLite3::Database.new 'base.sqlite'
 		db.execute 'create table if not exists "Contacts"
 	(
 		"Id" integer primary key autoincrement,
@@ -60,6 +59,10 @@ get '/about' do
 	erb :visit
  end
 
+ get '/showusers' do
+	erb ':showusers'
+ end
+
 post '/visit' do
 	@username = params[:username]
 	@userphone = params[:userphone]
@@ -80,7 +83,7 @@ post '/visit' do
 		end
 	end
 
-	db = SQLite3::Database.new 'base.sqlite'
+	db = get_db
 
 	db.execute 'insert into Users (Name, Phone, DateStamp, Barber, color) values (?,?,?,?,?)', [@username, @userphone, @usertime, @barber, @color]
 	
@@ -119,7 +122,7 @@ post '/visit' do
 	f.write("Email: #{@usermail}; Message: #{@usermessage}\n")
 	f.close
 
-	db = SQLite3::Database.new 'base.sqlite'
+	db = get_db
 
 	db.execute 'insert into Contacts (Email, Message) values (?,?)', [@usermail, @usermessage]
 	
@@ -142,4 +145,10 @@ end
 
 get '/secure/place' do
   erb 'This is a secret place that only <%=session[:identity]%> has access to!'
+end
+
+def get_db
+	db = SQLite3::Database.new 'base.sqlite'
+	db.results_as_hash = true
+	return db
 end

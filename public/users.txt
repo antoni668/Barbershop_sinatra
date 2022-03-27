@@ -31,3 +31,4 @@ User: Peter; Tel: 67676767; Time: 22.12.2022 at 16:00; Color: #dbadff; Barber: G
 User: dfdfdf; Tel: 888; Time: 15:00; Color: #51b749; Barber: Walter White
 User: Ivan; Tel: 1; Time: 1; Color: #7bd148; Barber: Walter White
 User: Ivan; Tel: 333; Time: 15:00; Color: #7bd148; Barber: Walter White
+User: Semen; Tel: 555; Time: 2022/03/28 05:00; Color: #ffb878; Barber: Jessie Pinkman
