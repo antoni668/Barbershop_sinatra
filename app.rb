@@ -15,6 +15,14 @@ configure do
 		"Color" text
 		)'
 
+		db = SQLite3::Database.new 'base.sqlite'
+		db.execute 'create table if not exists "Contacts"
+	(
+		"Id" integer primary key autoincrement,
+		"Email" text,
+		"Message" text
+		)'
+
   enable :sessions
 end
 
@@ -110,6 +118,12 @@ post '/visit' do
 	f = File.open('./public/contacts.txt', 'a')
 	f.write("Email: #{@usermail}; Message: #{@usermessage}\n")
 	f.close
+
+	db = SQLite3::Database.new 'base.sqlite'
+
+	db.execute 'insert into Contacts (Email, Message) values (?,?)', [@usermail, @usermessage]
+	
+	db.close
 
 	erb 'Ваше сообщение отправлено'
  end
