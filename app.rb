@@ -1,9 +1,20 @@
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
-require 'pony'
+require 'sqlite3'
 
 configure do
+	db = SQLite3::Database.new 'base.sqlite'
+	db.execute 'create table if not exists "Users"
+	(
+		"Id" integer primary key autoincrement,
+		"Name" text,
+		"Phone" text,
+		"DateStamp" text,
+		"Barber" text,
+		"Color" text
+		)'
+
   enable :sessions
 end
 
@@ -46,17 +57,8 @@ post '/visit' do
 	@userphone = params[:userphone]
 	@usertime = params[:usertime]
 	@color = params[:colorpicker]
-
-	x = ''
-	case params[:users_barber]
-	when '1'
-		x = "; Barber: Walter White"
-	when '2'
-		x = "; Barber: Jessie Pinkman"
-	when '3'
-		x = "; Barber: Gus Fring"
-	end
-
+	@barber = params[:users_barber]
+	
 	hash = {
 		username: 'Введите имя',
 		userphone: 'Введите телефон',
@@ -70,8 +72,15 @@ post '/visit' do
 		end
 	end
 
+	db = SQLite3::Database.new 'base.sqlite'
+
+	db.execute 'insert into Users (Name, Phone, DateStamp, Barber, color) values (?,?,?,?,?)', [@username, @userphone, @usertime, @barber, @color]
+	
+	db.close
+
+
 	f = File.open('./public/users.txt', 'a')
-	f.write("User: #{@username}; Tel: #{@userphone}; Time: #{@usertime}; Color: #{@color}" + x +"\n")
+	f.write("User: #{@username}; Tel: #{@userphone}; Time: #{@usertime}; Color: #{@color}; Barber: #{@barber}\n")
 	f.close
 
 	erb "Вы записаны на  #{@usertime}"

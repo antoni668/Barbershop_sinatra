@@ -11,3 +11,23 @@ User: Василий Алибабаевич; Tel: 132-897; Time: 23.03.2022  в 
 User: Cat; Tel: 333-33-333; Time: 22:00; Color: #ff887c; Barber: Walter White
 User: Dog; Tel: 111; Time: 11:11; Color: #e1e1e1; Barber: Walter White
 User: Ivan; Tel: 111111; Time: 16:15; Color: #7bd148
+User: Oleg; Tel: 111; Time: 15:00; Color: #7ae7bf; Barber: Walter White
+User: Ivan; Tel: 222; Time: 16:00; Color: #a4bdfc; Barber: Jessie Pinkman
+User: 2; Tel: 3; Time: 4; Color: #46d6db; Barber: Jessie Pinkman
+User: Ivan; Tel: 222; Time: 16:00; Color: #51b749; Barber: Walter White
+User: Ivan; Tel: 222; Time: 22; Color: #7ae7bf; Barber: Walter White
+User: 23; Tel: 23; Time: 23; Color: #7bd148; Barber: Jessie Pinkman
+User: Ivan; Tel: 33; Time: 33; Color: #7bd148
+User: 2; Tel: 3; Time: 4; Color: #7ae7bf+ 2
+User: 11; Tel: 22; Time: 33; Color: #7ae7bf; Barber: 2
+User: 4444; Tel: 4444; Time: 4444; Color: #dc2127; Barber: 2
+User: fg; Tel: 456; Time: 456; Color: #7ae7bf; Barber: Jessie Pinkman
+User: Ivan; Tel: 5555; Time: 15:00; Color: #dc2127; Barber: Gus Fring
+User: Ivan; Tel: 1; Time: 1; Color: #a4bdfc; Barber: Walter White
+User: Ivan; Tel: 1; Time: 1; Color: #51b749; Barber: Walter White
+User: admin; Tel: 2; Time: 2; Color: #7bd148; Barber: Walter White
+User: Ivan; Tel: 1; Time: 1; Color: #7bd148; Barber: 
+User: Peter; Tel: 67676767; Time: 22.12.2022 at 16:00; Color: #dbadff; Barber: Gus Fring
+User: dfdfdf; Tel: 888; Time: 15:00; Color: #51b749; Barber: Walter White
+User: Ivan; Tel: 1; Time: 1; Color: #7bd148; Barber: Walter White
+User: Ivan; Tel: 333; Time: 15:00; Color: #7bd148; Barber: Walter White
