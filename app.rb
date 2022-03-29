@@ -3,6 +3,12 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
 
+def get_db
+	db = SQLite3::Database.new 'base.sqlite'
+	db.results_as_hash = true
+	return db
+end
+
 configure do
 	db = get_db
 	db.execute 'create table if not exists "Users"
@@ -13,14 +19,20 @@ configure do
 		"DateStamp" text,
 		"Barber" text,
 		"Color" text
-		)'
+	)'
 
 		db.execute 'create table if not exists "Contacts"
 	(
 		"Id" integer primary key autoincrement,
 		"Email" text,
 		"Message" text
-		)'
+	)'
+
+	# 	db.execute 'create table if not exists "Barbers"
+	# (
+	# 	"Id" integer primary key autoincrement,
+	# 	"Name" text
+	# ) values (?,?,?)', ['Walter White', 'Jessie Pinkman', 'Gus Fring']
 
   enable :sessions
 end
@@ -43,6 +55,15 @@ before '/secure/*' do
   end
 end
 
+get '/logout' do
+	session.delete(:identity)
+	erb "<div class='alert alert-message'>Logged out</div>"
+ end
+ 
+ get '/secure/place' do
+	erb 'This is a secret place that only <%=session[:identity]%> has access to!'
+ end
+
 get '/' do
   erb 'Can you handle a <a href="/secure/place">secret</a>?'
 end
@@ -60,9 +81,21 @@ get '/about' do
  end
 
  get '/showusers' do
-	erb ':showusers'
+	db = get_db
+	@results = db.execute 'select * from Users order by id desc' 
+	db.close
+
+	erb :showusers
  end
 
+ post '/login/attempt' do
+	session[:identity] = params['username']
+	session[:password] = params['userpass']
+	where_user_came_from = session[:previous_url] || '/'
+	redirect to where_user_came_from
+ end
+
+ #======= POST VISIT =======
 post '/visit' do
 	@username = params[:username]
 	@userphone = params[:userphone]
@@ -101,6 +134,7 @@ post '/visit' do
 	erb :contacts
  end
 
+ #======= POST CONTACTS =======
  post '/contacts' do
 	@usermessage = params[:usermessage]
 	@usermail = params[:usermail]
@@ -130,25 +164,3 @@ post '/visit' do
 
 	erb 'Ваше сообщение отправлено'
  end
-
-post '/login/attempt' do
-  session[:identity] = params['username']
-  session[:password] = params['userpass']
-  where_user_came_from = session[:previous_url] || '/'
-  redirect to where_user_came_from
-end
-
-get '/logout' do
-  session.delete(:identity)
-  erb "<div class='alert alert-message'>Logged out</div>"
-end
-
-get '/secure/place' do
-  erb 'This is a secret place that only <%=session[:identity]%> has access to!'
-end
-
-def get_db
-	db = SQLite3::Database.new 'base.sqlite'
-	db.results_as_hash = true
-	return db
-end
