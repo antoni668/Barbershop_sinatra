@@ -70,6 +70,11 @@ before '/secure/*' do
   end
 end
 
+before do
+	db = get_db
+	@barbers = db.execute 'select * from Barbers'
+end
+
 get '/logout' do
 	session.delete(:identity)
 	erb "<div class='alert alert-message'>Logged out</div>"
