@@ -35,3 +35,5 @@ User: Semen; Tel: 555; Time: 2022/03/28 05:00; Color: #ffb878; Barber: Jessie Pi
 User: Kolya; Tel: 111; Time: 2022/03/28 12:00; Color: #46d6db; Barber: Jessie Pinkman
 User: Vasya; Tel: 222; Time: 2022/03/28 13:00; Color: #dc2127; Barber: Gus Fring
 User: admin; Tel: 111; Time: 2022/03/29 18:00; Color: #7bd148; Barber: Walter White
+User: Федя; Tel: 22-22-22; Time: 2022/03/30 10:00; Color: #fbd75b; Barber: Walter White
+User: John; Tel: 111-22-34; Time: 2022/03/30 11:00; Color: #dbadff; Barber: Gus Fring
